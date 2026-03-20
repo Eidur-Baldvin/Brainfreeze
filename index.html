@@ -1144,7 +1144,7 @@ function handleCorrectAnswer(answer) {
   gameState.guessedBy.push(gameState.numPlayers > 1 ? currentPlayer.name : null);
   currentPlayer.score++;
 
-  showFeedback('✅ Correct! "${capitalize(answer)}"', 'correct');
+  showFeedback('✅ Correct! '${capitalize(answer)}', 'correct');
   flashInput('correct');
   renderGuessedGrid();
   updateProgress();
