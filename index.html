@@ -1144,7 +1144,7 @@ function handleCorrectAnswer(answer) {
   gameState.guessedBy.push(gameState.numPlayers > 1 ? currentPlayer.name : null);
   currentPlayer.score++;
 
-  showFeedback('✅ Correct! "${capitalize(answer)}"', 'correct');
+  showFeedback('✅ Correct! "'${capitalize(answer)}'"', 'correct');
   flashInput('correct');
   renderGuessedGrid();
   updateProgress();
@@ -1169,7 +1169,7 @@ function handleCorrectAnswer(answer) {
 }
 
 function handleWrongAnswer(raw) {
-  showFeedback('❌ "${raw}" is not correct. Try again!', 'wrong');
+  showFeedback('❌ "'${raw}'" is not correct. Try again!', 'wrong');
   flashInput('wrong');
   // In multiplayer, a wrong answer does NOT eliminate — only resigning or timer
   // But we still want to let them keep guessing... however, 
