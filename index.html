@@ -1047,11 +1047,15 @@ function renderPlayerBadges() {
 
 function renderScoreTracker() {
   const container = document.getElementById('score-tracker');
+
   if (gameState.numPlayers === 1) {
+    const done = gameState.guessedAnswers.length;
+    const total = gameState.selectedCategory.answers.length;
+
     container.innerHTML = `
-      <div class="score-item"><div class="score-name">Correct</div><div class="score-value" id="solo-score">0</div></div>
-      <div class="score-item"><div class="score-name">Total</div><div class="score-value">${gameState.selectedCategory.answers.length}</div></div>
-      <div class="score-item"><div class="score-name">Remaining</div><div class="score-value" id="solo-remaining">${gameState.selectedCategory.answers.length}</div></div>
+      <div class="score-item"><div class="score-name">Correct</div><div class="score-value" id="solo-score">${done}</div></div>
+      <div class="score-item"><div class="score-name">Total</div><div class="score-value">${total}</div></div>
+      <div class="score-item"><div class="score-name">Remaining</div><div class="score-value" id="solo-remaining">${total - done}</div></div>
     `;
   } else {
     container.innerHTML = gameState.playerScores.map(p =>
@@ -1169,9 +1173,9 @@ function handleCorrectAnswer(answer) {
   showFeedback(`✅ Correct! "${capitalize(answer)}"`, 'correct');
   flashInput('correct');
   renderGuessedGrid();
-  updateProgress();
-  renderScoreTracker();
-  renderPlayerBadges();
+renderScoreTracker();
+updateProgress();
+renderPlayerBadges();
 
   // Check if all answers found
   if (gameState.guessedAnswers.length === gameState.selectedCategory.answers.length) {
